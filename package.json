@@ -1,0 +1,16 @@
+{
+  "name": "cms-tutorial",
+  "version": "1.0.1",
+  "description": "Nodejs CMS Application",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "author": "Indranil Mukherjee",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4",
+    "express-handlebars": "^3.0.0",
+    "mongoose": "^5.4.2"
+  }
+}
