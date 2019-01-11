@@ -19,5 +19,16 @@ router.route('/')
 
 
 
+router.route('/posts')
+    .get(adminController.getPosts);
+    
+
+
+router.route('/posts/create')
+    .get(adminController.createPosts)
+    .post(adminController.submitPosts);;
+
+
+
 module.exports = router;
 
