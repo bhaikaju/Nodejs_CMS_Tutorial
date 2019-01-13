@@ -1,13 +1,13 @@
 <div class="container">
-    <h1>Create New Post</h1>
-    
+    <h1>Edit Post</h1>
+
     <div class="row p-4">
         <div class="col-md-10">
             <form action="/admin/posts/create" method="post">
-                
+
                 <div class="form-group">
                     <label for="title">Title</label>
-                    <input type="text" class="form-control" name="title" id="title" placeholder="Enter The Title">
+                    <input type="text" class="form-control" name="title" id="title" placeholder="Enter The Title" value={{post.title}}>
                 </div>
 
                 <div class="form-group">
@@ -18,27 +18,27 @@
                         <option value="draft">Draft</option>
                     </select>
                 </div>
-                
+
                 <div class="form-check ml-3">
                     <label for="allowComments">
-                        <input type="checkbox" class="form-check-input" id="allowComments" name="allowComments">
+                        <input type="checkbox" class="form-check-input" id="allowComments" name="allowComments" >
                         Allow Comments
                     </label>
                 </div>
-                
+
                 <div class="form-group">
                     <label for="description">Content</label>
-                    <textarea name="description" id="description" class="form-control" placeholder="Enter your content here" rows="10"></textarea>
+                    <textarea name="description" id="description" class="form-control" placeholder="Enter your content here" rows="10">{{post.description}}</textarea>
                 </div>
-                
-                
+
+
                 <button class="btn btn-outline-success btn-lg" type="submit">Create Post</button>
-                
-                
+
+
             </form>
         </div>
     </div>
-    
-    
-    
+
+
+
 </div>

@@ -41,3 +41,43 @@
 <!-- Custom scripts for this page-->
 <script src="/js/sb-admin-datatables.min.js"></script>
 <script src="/js/sb-admin-charts.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $('.auto-hide').slideUp(300);
+        }, 2000);
+
+
+        $("#create-category-button").on('click', function (e) {
+            e.preventDefault();
+            
+            var data = $("#category-title").val();
+          
+            $.ajax({
+                url: '/admin/category',
+                type: 'POST',
+                data: {name: data},
+                success: function (response) {
+                    
+                    var html = `<tr>
+                        <td>${response.title}</td>
+                        <td class="d-flex justify-content-center">
+                            <a href="/admin/categories/edit/${response.id}" class="btn btn-sm btn-warning mr-2">Edit</a>
+                            <form action="/admin/categories/${response.id}?_method=DELETE" method="post">
+                                <button class="btn btn-sm btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+                    </tr>`;
+                    
+                       
+                    $(".category-list").append(html);
+                    
+                }
+            })
+            
+        });
+
+    });
+
+</script>

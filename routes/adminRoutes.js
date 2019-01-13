@@ -9,15 +9,15 @@ router.all('/*', (req, res, next) => {
     req.app.locals.layout = 'admin';
     
     next();
-})
+});
 
-
-
+/* DEFAULT ADMIN INDEX ROUTE*/
 
 router.route('/')
     .get(adminController.index);
 
 
+/* VARIOUS ADMIN POST ENDPOINTS */
 
 router.route('/posts')
     .get(adminController.getPosts);
@@ -25,8 +25,23 @@ router.route('/posts')
 
 
 router.route('/posts/create')
-    .get(adminController.createPosts)
-    .post(adminController.submitPosts);;
+    .get(adminController.createPostsGet)
+    .post(adminController.submitPosts);
+
+
+router.route('/posts/edit/:id')
+    .get(adminController.editPost);
+
+
+router.route('/posts/delete/:id')
+    .delete(adminController.deletePost);
+
+
+/* ADMIN CATEGORY ROUTES*/
+
+router.route('/category')
+    .get(adminController.getCategories)
+    .post(adminController.createCategories);
 
 
 
