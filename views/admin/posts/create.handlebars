@@ -18,6 +18,19 @@
                         <option value="draft">Draft</option>
                     </select>
                 </div>
+
+
+                <div class="form-group">
+                    <label for="category">Category</label>
+                    <select name="category" id="category" class="form-control">
+                        {{#each categories}}
+                            <option value="{{_id}}">{{title}}</option>    
+                        {{/each}}
+                                             
+                    </select>
+                </div>
+                
+                
                 
                 <div class="form-check ml-3">
                     <label for="allowComments">

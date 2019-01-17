@@ -6,6 +6,7 @@ module.exports = {
 
     index: (req, res) => {
         res.render('admin/index');
+        
     },
 
 
@@ -13,14 +14,22 @@ module.exports = {
 
 
     getPosts: (req, res) => {
-        Post.find().then(posts => {
+        Post.find()
+            .populate('category')
+            .then(posts => {
             res.render('admin/posts/index', {posts: posts});
         });
     },
 
 
     createPostsGet: (req, res) => {
-        res.render('admin/posts/create');
+        Category.find().then(cats => {
+
+            res.render('admin/posts/create', {categories: cats});
+        });
+        
+        
+        
     },
 
     submitPosts: (req, res) => {
@@ -35,7 +44,8 @@ module.exports = {
             title: req.body.title,
             description: req.body.description,
             status: req.body.status,
-            allowComments: commentsAllowed
+            allowComments: commentsAllowed,
+            category: req.body.category
         });
 
         newPost.save().then(post => {

@@ -32,15 +32,10 @@
 <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Core plugin JavaScript-->
 <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
-<!-- Page level plugin JavaScript-->
-<script src="/vendor/chart.js/Chart.min.js"></script>
-<script src="/vendor/datatables/jquery.dataTables.js"></script>
-<script src="/vendor/datatables/dataTables.bootstrap4.js"></script>
+
 <!-- Custom scripts for all pages-->
 <script src="/js/sb-admin.min.js"></script>
-<!-- Custom scripts for this page-->
-<script src="/js/sb-admin-datatables.min.js"></script>
-<script src="/js/sb-admin-charts.min.js"></script>
+
 
 <script>
     $(document).ready(function () {
@@ -63,8 +58,8 @@
                     var html = `<tr>
                         <td>${response.title}</td>
                         <td class="d-flex justify-content-center">
-                            <a href="/admin/categories/edit/${response.id}" class="btn btn-sm btn-warning mr-2">Edit</a>
-                            <form action="/admin/categories/${response.id}?_method=DELETE" method="post">
+                            <a href="/admin/categories/edit/${response._id}" class="btn btn-sm btn-warning mr-2">Edit</a>
+                            <form action="/admin/categories/${response._id}?newMethod=DELETE" method="post">
                                 <button class="btn btn-sm btn-danger" type="submit">Delete</button>
                             </form>
                         </td>
@@ -74,8 +69,9 @@
                     $(".category-list").append(html);
                     
                 }
-            })
-            
+            });
+
+            $("#category-title").val('');
         });
 
     });
