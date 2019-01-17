@@ -6,7 +6,7 @@ module.exports = {
 
     index: (req, res) => {
         res.render('admin/index');
-        
+
     },
 
 
@@ -17,8 +17,8 @@ module.exports = {
         Post.find()
             .populate('category')
             .then(posts => {
-            res.render('admin/posts/index', {posts: posts});
-        });
+                res.render('admin/posts/index', {posts: posts});
+            });
     },
 
 
@@ -27,9 +27,8 @@ module.exports = {
 
             res.render('admin/posts/create', {categories: cats});
         });
-        
-        
-        
+
+
     },
 
     submitPosts: (req, res) => {
@@ -60,43 +59,76 @@ module.exports = {
     editPost: (req, res) => {
         const id = req.params.id;
 
-        Post.findById(id).then(post => {
-            res.render('admin/posts/edit', {post: post});
-        })
+        Post.findById(id)
+            .then(post => {
+
+                Category.find().then(cats => {
+                    res.render('admin/posts/edit', {post: post, categories: cats});
+                });
+
+
+            })
     },
-    
+
+    editPostSubmit: (req, res) => {
+        const commentsAllowed = req.body.allowComments ? true : false;
+
+
+        const id = req.params.id;
+
+        Post.findById(id)
+            .then(post => {
+
+                post.title = req.body.title;
+                post.status = req.body.status;
+                post.allowComments = req.body.allowComments;
+                post.description = req.body.description;
+                post.category = req.body.category;
+
+
+                post.save().then(updatePost => {
+                    req.flash('success-message', `The Post ${updatePost.title} has been updated.`);
+                    res.redirect('/admin/posts');
+
+                });
+
+
+            });
+
+    },
+
     deletePost: (req, res) => {
-        
+
         Post.findByIdAndDelete(req.params.id)
             .then(deletedPost => {
                 req.flash('success-message', `The post ${deletedPost.title} has been deleted.`);
                 res.redirect('/admin/posts');
             });
-        
+
     },
-    
-    
+
+
     /* ALL CATEGORY METHODS*/
     getCategories: (req, res) => {
         Category.find().then(cats => {
-           res.render('admin/category/index', {categories: cats}); 
+            res.render('admin/category/index', {categories: cats});
         });
     },
-    
+
     createCategories: (req, res) => {
         var categoryName = req.body.name;
-        
-        if(categoryName) {
+
+        if (categoryName) {
             const newCategory = new Category({
                 title: categoryName
             });
-            
+
             newCategory.save().then(category => {
-               res.status(200).json(category); 
+                res.status(200).json(category);
             });
         }
-        
-        
+
+
     }
 
 

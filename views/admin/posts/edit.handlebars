@@ -3,7 +3,7 @@
 
     <div class="row p-4">
         <div class="col-md-10">
-            <form action="/admin/posts/create" method="post">
+            <form action="/admin/posts/edit/{{post._id}}?newMethod=PUT" method="post">
 
                 <div class="form-group">
                     <label for="title">Title</label>
@@ -23,9 +23,11 @@
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select name="category" id="category" class="form-control">
-                        {{#each categories}}
-                            <option value="{{_id}}">{{title}}</option>
-                        {{/each}}
+                        {{#select post.category}}
+                            {{#each categories}}
+                                <option value="{{_id}}">{{title}}</option>    
+                            {{/each}}                            
+                        {{/select}}
                     </select>
                 </div>
 
