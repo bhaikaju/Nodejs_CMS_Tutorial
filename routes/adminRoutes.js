@@ -3,7 +3,6 @@ const router = express.Router();
 const adminController = require('../controllers/adminController');
 
 
-
 router.all('/*', (req, res, next) => {
     
     req.app.locals.layout = 'admin';
@@ -30,8 +29,8 @@ router.route('/posts/create')
 
 
 router.route('/posts/edit/:id')
-    .get(adminController.editPost)
-    .put(adminController.editPostSubmit);
+    .get(adminController.editPostGetRoute)
+    .put(adminController.editPostUpdateRoute);
 
 
 router.route('/posts/delete/:id')
@@ -41,9 +40,16 @@ router.route('/posts/delete/:id')
 /* ADMIN CATEGORY ROUTES*/
 
 router.route('/category')
-    .get(adminController.getCategories)
+    .get(adminController.getCategories);
+
+
+router.route('/category/create')
     .post(adminController.createCategories);
 
+
+router.route('/category/edit/:id')
+    .get(adminController.editCategoriesGetRoute)
+    .post(adminController.editCategoriesPostRoute);
 
 
 module.exports = router;

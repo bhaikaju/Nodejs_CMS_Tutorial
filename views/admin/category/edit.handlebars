@@ -36,11 +36,12 @@
 
     <div class="row p-4">
         <div class="col-md-8">
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" class="form-control" id="category-title" name="title" placeholder="Enter Title">
-                </div>
-                    <button class="btn btn-outline-success btn-lg" id="create-category-button">Create Category</button>
+            <div class="form-group">
+                <label for="title">Title</label>
+                <input type="text" class="form-control" id="category-title" name="title" value="{{category.title}}">
+                <input type="hidden" class="form-control" id="category-id" name="id" value="{{category._id}}">
+            </div>
+            <button class="btn btn-outline-warning btn-lg" id="update-category-button">Update Category</button>
         </div>
     </div>
 

@@ -56,7 +56,7 @@ module.exports = {
     },
 
 
-    editPost: (req, res) => {
+    editPostGetRoute: (req, res) => {
         const id = req.params.id;
 
         Post.findById(id)
@@ -70,7 +70,7 @@ module.exports = {
             })
     },
 
-    editPostSubmit: (req, res) => {
+    editPostUpdateRoute: (req, res) => {
         const commentsAllowed = req.body.allowComments ? true : false;
 
 
@@ -91,8 +91,6 @@ module.exports = {
                     res.redirect('/admin/posts');
 
                 });
-
-
             });
 
     },
@@ -104,12 +102,12 @@ module.exports = {
                 req.flash('success-message', `The post ${deletedPost.title} has been deleted.`);
                 res.redirect('/admin/posts');
             });
-
     },
 
 
     /* ALL CATEGORY METHODS*/
     getCategories: (req, res) => {
+
         Category.find().then(cats => {
             res.render('admin/category/index', {categories: cats});
         });
@@ -128,9 +126,39 @@ module.exports = {
             });
         }
 
+    },
 
+    editCategoriesGetRoute: async (req, res) => {
+        const catId = req.params.id;
+
+        const cats = await Category.find();
+
+
+        Category.findById(catId).then(cat => {
+
+            res.render('admin/category/edit', {category: cat, categories: cats});
+
+        });
+    },
+
+
+    editCategoriesPostRoute: (req, res) => {
+        const catId = req.params.id;
+        const newTitle = req.body.name;
+
+        if (newTitle) {
+            Category.findById(catId).then(category => {
+
+                category.title = newTitle;
+
+                category.save().then(updated => {
+                    res.status(200).json({url: '/admin/category'});
+                });
+
+            });
+        }
     }
 
 
-}    
+};    
     
