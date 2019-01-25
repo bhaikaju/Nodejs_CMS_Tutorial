@@ -11,6 +11,8 @@ const flash = require('connect-flash');
 const session = require('express-session');
 const methodOverride = require('method-override');
 const {selectOption} = require('./config/customFunctions');
+const fileUpload = require('express-fileupload');
+
 
 const app = express();
 
@@ -44,6 +46,9 @@ app.use(flash());
 /* Use Global Variables */
 app.use(globalVariables);
 
+
+/* File Upload Middleware*/
+app.use(fileUpload());
 
 /* Setup View Engine To Use Handlebars */
 app.engine('handlebars', hbs({defaultLayout: 'default', helpers: {select: selectOption}}));

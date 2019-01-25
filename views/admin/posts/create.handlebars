@@ -3,11 +3,16 @@
     
     <div class="row p-4">
         <div class="col-md-10">
-            <form action="/admin/posts/create" method="post">
+            <form action="/admin/posts/create" method="post" enctype="multipart/form-data">
                 
                 <div class="form-group">
                     <label for="title">Title</label>
                     <input type="text" class="form-control" name="title" id="title" placeholder="Enter The Title">
+                </div>
+                
+                <div class="form-group">
+                    <label for="file">File Upload</label>
+                    <input type="file" class="form-control" id="file" name="uploadedFile"  accept="image/jpeg, image/jpg, image/png, image/bmp">
                 </div>
 
                 <div class="form-group">
