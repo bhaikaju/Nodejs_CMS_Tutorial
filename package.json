@@ -9,6 +9,7 @@
   "author": "Indranil Mukherjee",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "connect-flash": "^0.1.1",
     "express": "^4.16.4",
     "express-fileupload": "^1.1.1-alpha.1",

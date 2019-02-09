@@ -24,13 +24,13 @@ router.route('/posts')
 
 
 router.route('/posts/create')
-    .get(adminController.createPostsGet)
-    .post(adminController.submitPosts);
+    .get(adminController.getCreatePostPage)
+    .post(adminController.submitCreatePostPage);
 
 
 router.route('/posts/edit/:id')
-    .get(adminController.editPostGetRoute)
-    .put(adminController.editPostUpdateRoute);
+    .get(adminController.getEditPostPage)
+    .put(adminController.submitEditPostPage);
 
 
 router.route('/posts/delete/:id')
@@ -48,8 +48,8 @@ router.route('/category/create')
 
 
 router.route('/category/edit/:id')
-    .get(adminController.editCategoriesGetRoute)
-    .post(adminController.editCategoriesPostRoute);
+    .get(adminController.getEditCategoriesPage)
+    .post(adminController.submitEditCategoriesPage);
 
 
 module.exports = router;

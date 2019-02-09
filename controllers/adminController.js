@@ -22,7 +22,7 @@ module.exports = {
     },
 
 
-    createPostsGet: (req, res) => {
+    getCreatePostPage: (req, res) => {
         Category.find().then(cats => {
 
             res.render('admin/posts/create', {categories: cats});
@@ -31,24 +31,24 @@ module.exports = {
 
     },
 
-    submitPosts: (req, res) => {
+    submitCreatePostPage: (req, res) => {
 
-        const commentsAllowed = req.body.allowComments ? true : false;
+        const commentsAllowed = !!req.body.allowComments;
 
         // Check for any input file
         let filename = '';
-        
-       if(!isEmpty(req.files)) {
-           let file = req.files.uploadedFile;
-           filename = file.name;
-           let uploadDir = './public/uploads/';
-           
-           file.mv(uploadDir+filename, (err) => {
-               if (err)
-                   throw err;
-           });
-       }
-        
+
+        if (!isEmpty(req.files)) {
+            let file = req.files.uploadedFile;
+            filename = file.name;
+            let uploadDir = './public/uploads/';
+
+            file.mv(uploadDir + filename, (err) => {
+                if (err)
+                    throw err;
+            });
+        }
+
         const newPost = new Post({
             title: req.body.title,
             description: req.body.description,
@@ -62,37 +62,27 @@ module.exports = {
             req.flash('success-message', 'Post created successfully.');
             res.redirect('/admin/posts');
         });
-
-
     },
 
-
-    editPostGetRoute: (req, res) => {
+    getEditPostPage: (req, res) => {
         const id = req.params.id;
 
         Post.findById(id)
             .then(post => {
-
                 Category.find().then(cats => {
                     res.render('admin/posts/edit', {post: post, categories: cats});
                 });
-
-
-            })
+            });
     },
 
-    editPostUpdateRoute: (req, res) => {
-        const commentsAllowed = req.body.allowComments ? true : false;
-
-
+    submitEditPostPage: (req, res) => {
+        const commentsAllowed = !!req.body.allowComments;
         const id = req.params.id;
-
         Post.findById(id)
             .then(post => {
-
                 post.title = req.body.title;
                 post.status = req.body.status;
-                post.allowComments = req.body.allowComments;
+                post.allowComments = commentsAllowed;
                 post.description = req.body.description;
                 post.category = req.body.category;
 
@@ -100,10 +90,8 @@ module.exports = {
                 post.save().then(updatePost => {
                     req.flash('success-message', `The Post ${updatePost.title} has been updated.`);
                     res.redirect('/admin/posts');
-
                 });
             });
-
     },
 
     deletePost: (req, res) => {
@@ -125,7 +113,7 @@ module.exports = {
     },
 
     createCategories: (req, res) => {
-        var categoryName = req.body.name;
+        let categoryName = req.body.name;
 
         if (categoryName) {
             const newCategory = new Category({
@@ -139,7 +127,7 @@ module.exports = {
 
     },
 
-    editCategoriesGetRoute: async (req, res) => {
+    getEditCategoriesPage: async (req, res) => {
         const catId = req.params.id;
 
         const cats = await Category.find();
@@ -153,7 +141,7 @@ module.exports = {
     },
 
 
-    editCategoriesPostRoute: (req, res) => {
+    submitEditCategoriesPage: (req, res) => {
         const catId = req.params.id;
         const newTitle = req.body.name;
 

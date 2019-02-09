@@ -1,3 +1,12 @@
+{{#if errors}}
+{{#each errors}}
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <strong>{{message}}</strong>
+    </div>
+{{/each}}
+{{/if}}
+
+
 
 <div class="card card-register mx-auto my-5">
     <div class="card-header">Register an Account</div>
@@ -7,27 +16,27 @@
                 <div class="form-row">
                     <div class="col-md-6">
                         <label for="exampleInputName">First name</label>
-                        <input name="firstName" class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" required>
+                        <input name="firstName" class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" >
                     </div>
                     <div class="col-md-6">
                         <label for="exampleInputLastName">Last name</label>
-                        <input name="lastName" class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name" required>
+                        <input name="lastName" class="form-control" id="exampleInputLastName" type="text" aria-describedby="nameHelp" placeholder="Enter last name" >
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail1">Email address</label>
-                <input name="email" class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" required>
+                <input name="email" class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" >
             </div>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col-md-6">
                         <label for="exampleInputPassword1">Password</label>
-                        <input name="password" class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" required >
+                        <input name="password" class="form-control" id="exampleInputPassword1" type="password" placeholder="Password"  >
                     </div>
                     <div class="col-md-6">
                         <label for="exampleConfirmPassword">Confirm password</label>
-                        <input name="passwordConfirm" class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" required>
+                        <input name="passwordConfirm" class="form-control" id="exampleConfirmPassword" type="password" placeholder="Confirm password" >
                     </div>
                 </div>
             </div>
