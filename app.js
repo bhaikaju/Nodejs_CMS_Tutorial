@@ -12,7 +12,7 @@ const session = require('express-session');
 const methodOverride = require('method-override');
 const {selectOption} = require('./config/customFunctions');
 const fileUpload = require('express-fileupload');
-
+const passport = require('passport');
 
 const app = express();
 
@@ -42,6 +42,9 @@ app.use(session({
 
 app.use(flash());
 
+/* Passport Initialize */
+app.use(passport.initialize());
+app.use(passport.session());
 
 /* Use Global Variables */
 app.use(globalVariables);
