@@ -6,13 +6,13 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/about">About</a>
-                </li>
 
                 {{#if user}}
                     <li class="nav-item">
                         <a class="nav-link" href="/admin">Admin</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout"><i class="fa fa-fw fa-sign-out"></i>Logout</a>
                     </li>
 
                 {{else}}
