@@ -166,6 +166,22 @@ module.exports = {
             .then(comments => {
                 res.render('admin/comments/index', {comments: comments});
             })
+    },
+    
+    approveComments: (req, res) => {
+        var data = req.body.data;
+        var commentId = req.body.id;
+        
+        console.log(data, commentId);
+
+        Comment.findById(commentId).then(comment => {
+            comment.commentIsApproved = data;
+            comment.save().then(saved => {
+                res.status(200).send('OK');
+            }).catch(err => {
+                res.status(201).send('FAIL');
+            });
+        });
     }
 
 

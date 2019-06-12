@@ -4,7 +4,6 @@ const adminController = require('../controllers/adminController');
 const {isUserAuthenticated} = require("../config/customFunctions");
 
 
-
 router.all('/*', isUserAuthenticated, (req, res, next) => {
 
     req.app.locals.layout = 'admin';
@@ -22,7 +21,6 @@ router.route('/')
 
 router.route('/posts')
     .get(adminController.getPosts);
-
 
 
 router.route('/posts/create')
@@ -56,7 +54,8 @@ router.route('/category/edit/:id')
 
 /* ADMIN COMMENT ROUTES */
 router.route('/comment')
-    .get(adminController.getComments);
+    .get(adminController.getComments)
+    .post(adminController.approveComments);
 
 module.exports = router;
 

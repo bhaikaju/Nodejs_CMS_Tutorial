@@ -17,7 +17,7 @@
                     <tr>
                         <td>{{id}}</td>
                         <td style="width: auto;">{{user.firstName}} {{user.lastName}}</td>
-                        <td>{{commentIsApproved}}</td>
+                        <td><input type="checkbox" name="approveComments" class="approveComments" data-buttonid="{{id}}" {{#if commentIsApproved}}checked="checked"{{/if}} /></td>
                         <td>{{date}}</td>
                         <td>{{body}}</td>
                     </tr>
