@@ -12,7 +12,7 @@
     "connect-flash": "^0.1.1",
     "express": "^4.16.4",
     "express-fileupload": "^1.1.1-alpha.1",
-    "express-handlebars": "^3.0.0",
+    "express-handlebars": "^5.3.1",
     "express-session": "^1.15.6",
     "flash": "^1.1.0",
     "method-override": "^3.0.0",
